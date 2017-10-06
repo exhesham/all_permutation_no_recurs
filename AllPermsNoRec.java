@@ -94,20 +94,6 @@ public class AllPermsNoRec<TYPE> {
 		return res;
 	}
 
-	public void printAllPerms() {
-//		int fc = factorial(arrConst.length-1);
-//		for (int i = 0; i < arrConst.length; i++) {
-//			char[] arr = arrConst.clone();
-//			swap(arr, 0, i);
-//			for (int j = 0; j < fc; j++) {
-//				for (int k = 1; k < arr.length - 1; k++) {
-//					swap(arr, k, k + 1);
-//					System.out.println(Arrays.toString(arr));
-//				}
-//			}
-//		}
-	}
-
 	public static void main(String[] args) {
 		AllPermsNoRec<Integer> iter = new AllPermsNoRec<Integer>(new Integer[]{1,2,3});
 		Integer[] arr;
