@@ -7,6 +7,7 @@ Create an instance of the class `AllPermsNoRec` and call the method `next()` to 
 If all the permutations were generated, a null will be returned. in order to restart the generation, call the method `reset()`.
 
 **This code is thread safe using a semaphore**
+The `next()` function is not declared as `synchronized` as I implemented the semaphore. I used a semaphore in order to ban a scenario where `reset()` is called during `next()` execution. `synchronized` will not solve such scenario.
 
 # Algorithm
 1. calculate (n-1)!
