@@ -4,7 +4,9 @@ yield next permutation in java.
 
 Create an instance of the class `AllPermsNoRec` and call the method `next()` to get the next permutation.
 
-If all the permutations were generated, a null will be returned. in order to restart the generation, call the method `reset()`
+If all the permutations were generated, a null will be returned. in order to restart the generation, call the method `reset()`.
+
+* This code is thread safe using semaphore *
 
 # Algorithm
 1. calculate (n-1)!
