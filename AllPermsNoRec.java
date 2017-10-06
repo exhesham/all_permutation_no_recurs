@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class AllPermsNoRec<TYPE> {
 
-	final private TYPE[] arrConst;
+	final private TYPE[] arrConst; // make it final as it is the original copy
 	
 	
 	TYPE[] tempArr; // save the state
@@ -33,6 +33,9 @@ public class AllPermsNoRec<TYPE> {
 		swapCount = 1;
 	}
 	
+	/***
+	Generate the permutations
+	*/
 	public TYPE[] next(){
 		// handle single element
 		if(arrConst.length < 2 && fixed == 0){
