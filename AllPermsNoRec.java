@@ -1,45 +1,67 @@
+package training;
+
 import java.util.Arrays;
 
-public class AllPermsNoRec {
+public class AllPermsNoRec<TYPE> {
 
-	final private char[] arrConst;
+	final private TYPE[] arrConst;
 	
 	
-	char[] tempArr;
-	long fc;
+	TYPE[] tempArr; // save the state
+	long fc; // factorial on n-1
 	
-	int fixed = 0;
-	long fcCount=0;
-	int swapCount = 1;
+	int fixed = 0; // fixed element for the algorithm
+	long fcCount=0; // factorial counter
+	int swapCount = 1; // swap counter
 	
-	public AllPermsNoRec(char[] arr) {
+	public AllPermsNoRec(TYPE[] arr) {
 		this.arrConst = arr;
 		tempArr = arrConst.clone();
 		this.fc = factorial(arrConst.length-1);
 	}
 
-	public void swap(char[] arr, int i, int j) {
-		char temp = arr[i];
+	public void swap(TYPE[] arr, int i, int j) {
+		TYPE temp = arr[i];
 		arr[i] = arr[j];
 		arr[j] = temp;
 	}
 	
-	public char[] next(){
+	/***
+	 * reset all the counters to start generating from the beginning
+	 */
+	public void reset(){
+		fixed = 0;
+		fcCount=0;
+		swapCount = 1;
+	}
+	
+	public TYPE[] next(){
+		// handle single element
 		if(arrConst.length < 2 && fixed == 0){
 			fixed++;
 			return arrConst;
 			
 		}
+		//handle first swap of 2 elements array
 		if(arrConst.length == 2 && fixed == 0){
 			fixed++;
 			return arrConst;
 		}
+		//handle second swap of 2 elements array
 		if(arrConst.length == 2 && fixed == 1){
 			tempArr = arrConst.clone();
 			swap(tempArr, 0, fixed);
 			fixed++;
 			return tempArr;
 		}
+		
+		// run the algorithm:
+		// 1- calculate n-1!.
+		// 2- Store the original string in an auxiliary string and use that string to do the swaps.
+		// 3- Fix the first position(character), and swap all the k’th and (k+1)’th characters till (n-1)!.
+		// 4- At the end of first (n-1)! all the (n-1)th characters will be permuted.
+		// 5- Now again store the original string to the auxiliary string and swap i’th and (i+1)’th characters and repeat the 3rd and 4th process.
+		
 		for (; fixed < arrConst.length; ) {
 			
 			
@@ -89,8 +111,8 @@ public class AllPermsNoRec {
 	}
 
 	public static void main(String[] args) {
-		AllPermsNoRec iter = new AllPermsNoRec("abcd".toCharArray());
-		char[] arr;
+		AllPermsNoRec<Integer> iter = new AllPermsNoRec<Integer>(new Integer[]{1,2,3});
+		Integer[] arr;
 		while(( arr = iter.next()) != null){
 			System.out.println(Arrays.toString(arr));
 		}
