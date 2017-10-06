@@ -3,16 +3,16 @@ import java.util.concurrent.Semaphore;
 
 public class AllPermsNoRec<TYPE> {
 
-	private final Semaphore processing = new Semaphore(1);
+	private final Semaphore processing = new Semaphore(1, true); /* Use binary semaphore and FIFO the acquires*/
 
-	final private TYPE[] arrConst;
+	final private TYPE[] arrConst; // the original array as received
 
 	TYPE[] tempArr; // save the state
 	long fc; // factorial on n-1
 
-	int fixed = 0; // fixed element for the algorithm
-	long fcCount = 0; // factorial counter
-	int swapCount = 1; // swap counter
+	int fixed = 0; // fixed element in the array - for the algorithm calculation
+	long fcCount = 0; // factorial counter - for the algorithm calculation
+	int swapCount = 1; // swap counter - for the algorithm calculation
 
 	public AllPermsNoRec(TYPE[] arr) {
 		this.arrConst = arr;
@@ -27,7 +27,7 @@ public class AllPermsNoRec<TYPE> {
 	}
 
 	/***
-	 * reset all the counters to start generating from the beginning
+	 * reset all the counters to start generating from the beginning. acquires the semaphore in order not to interrupt an executing permutation generation
 	 * @throws InterruptedException 
 	 */
 	public void reset() throws InterruptedException {
@@ -37,7 +37,10 @@ public class AllPermsNoRec<TYPE> {
 		swapCount = 1;
 		processing.release();
 	}
-
+	/***
+	 * Generate the next permutation. null will be returned if EOF is reached
+	 * @throws InterruptedException 
+	 */
 	public TYPE[] next() throws InterruptedException {
 		processing.acquire();
 		// handle single element
