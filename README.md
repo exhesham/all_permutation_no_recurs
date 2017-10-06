@@ -21,10 +21,10 @@ Recursion is precious in space allocation. Space Complexity in the given algorit
 
 # Usage
 ```
-		AllPermsNoRec<Integer> iter = new AllPermsNoRec<Integer>(new Integer[]{1,2,3});
-		Integer[] arr;
-		while(( arr = iter.next()) != null){
-			System.out.println(Arrays.toString(arr));
-		}
+AllPermsNoRec<Integer> iter = new AllPermsNoRec<Integer>(new Integer[]{1,2,3});
+Integer[] arr;
+while(( arr = iter.next()) != null){
+	System.out.println(Arrays.toString(arr));
+}
 ```
 		
