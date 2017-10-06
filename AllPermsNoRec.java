@@ -93,13 +93,4 @@ public class AllPermsNoRec<TYPE> {
 		}
 		return res;
 	}
-
-	public static void main(String[] args) {
-		AllPermsNoRec<Integer> iter = new AllPermsNoRec<Integer>(new Integer[]{1,2,3});
-		Integer[] arr;
-		while(( arr = iter.next()) != null){
-			System.out.println(Arrays.toString(arr));
-		}
-	}
-
 }
